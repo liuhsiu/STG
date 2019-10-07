@@ -6,7 +6,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from challenge4.fibonacci import Fibonacci
+
+from challenge4.recur_fibo import RecurFibo
+
 
 class Challenge4(unittest.TestCase):
 
@@ -51,7 +53,7 @@ class Challenge4(unittest.TestCase):
         else:
             print("Fibonacci sequence:")
             for i in range(nterms):
-                print(Fibonacci.recur_fibo(i))
+                print(RecurFibo.recur_fibo(i))
 
 
     # Output 0, 1, 1, 2, 3, 5, 8, 13, 21
