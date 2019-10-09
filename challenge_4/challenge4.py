@@ -6,18 +6,17 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
 from challenge4.recur_fibo import RecurFibo
 
 
 class Challenge4(unittest.TestCase):
 
-    def setUp(self):
-        self.driver = webdriver.Chrome()
-
-    def tearDown(self):
-        self.driver.close()
-        print('in tear down method')
+    # def setUp(self):
+    #     self.driver = webdriver.Chrome()
+    #
+    # def tearDown(self):
+    #     self.driver.close()
+    #     print('in tear down method')
 
     # def test_for_loop(self):
     #     self.driver.get("https://www.copart.com")
@@ -41,11 +40,11 @@ class Challenge4(unittest.TestCase):
     def test_recur_fibo(self):
 
         # Change this value for a different result
-        nterms = 10
+        #nterms = 10
         #Fibonacci.recur_fibo(nterms)
 
         # uncomment to take input from the user
-        # nterms = int(input("How many terms? "))
+        nterms = int(input("How many terms? "))
 
         # check if the number of terms is valid
         if nterms <= 0:
@@ -57,11 +56,6 @@ class Challenge4(unittest.TestCase):
 
 
     # Output 0, 1, 1, 2, 3, 5, 8, 13, 21
-
-    def test_recur_fibo(self):
-        number = input("Please enter a positive integer")
-
-
 
 
 if __name__ == '__main__':
