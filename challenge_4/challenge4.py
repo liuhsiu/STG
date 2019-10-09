@@ -6,7 +6,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from challenge4.recur_fibo import RecurFibo
+from challenge_4.recur_fibo import RecurFibo
+from challenge_4.convert_num_to_string import ConvertNumToString
 
 
 class Challenge4(unittest.TestCase):
@@ -53,9 +54,11 @@ class Challenge4(unittest.TestCase):
             print("Fibonacci sequence:")
             for i in range(nterms):
                 print(RecurFibo.recur_fibo(i))
+        # Output 0, 1, 1, 2, 3, 5, 8, 13, 21, if is 9 terms
 
-
-    # Output 0, 1, 1, 2, 3, 5, 8, 13, 21
+    def test_convert_num_to_string(self):
+        number = input("Please enter a positive integer")
+        ConvertNumToString.convert_num_to_string(number)
 
 
 if __name__ == '__main__':
