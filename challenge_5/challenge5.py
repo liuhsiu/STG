@@ -41,18 +41,24 @@ class Challenge5(unittest.TestCase):
         serverSideDataTable = WebDriverWait(self.driver, 60).until(
             EC.presence_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable\"]/tbody")))
 
+        # get values from model column
         model_col = 5
         model_list = SearchColValue.search_col_value(serverSideDataTable, model_col)
         print(model_list)
 
         #Count how many different models of porsche is in the results on the first page
-        unique_models = set(model_list)  # == set(['a', 'b', 'c'])
-        unique_model_count = len(unique_models)
+        unique_models = set(model_list)
+        unique_model_count = len(SearchColValue.search_col_value(serverSideDataTable, unique_models))
         print(unique_model_count)
 
         # return in the terminal how many of each type exists.
         # Possible values can be “CAYENNE S”, “BOXSTER S”, etc.
 
+        # -----------------------------------------------------------------------------------------
+        # get values from damage column
+        damage_col = 11
+        damage_list = SearchColValue.search_col_value(serverSideDataTable, damage_col)
+        print(damage_list)
 
 
 
