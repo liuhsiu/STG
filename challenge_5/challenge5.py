@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from challenge_5.search_col_value import SearchColValue
 from challenge_5.unique_list import UniqueList
+from collections import Counter
 
 
 class Challenge5(unittest.TestCase):
@@ -41,20 +42,15 @@ class Challenge5(unittest.TestCase):
             EC.presence_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable\"]/tbody")))
 
         model_col = 5
-        SearchColValue.search_col_value(serverSideDataTable, model_col)
+        model_list = SearchColValue.search_col_value(serverSideDataTable, model_col)
+        print(model_list)
 
-        #UniqueList.uniqueValue(model_list)
+        #Count how many different models of porsche is in the results on the first page
+        unique_models = set(model_list)  # == set(['a', 'b', 'c'])
+        unique_model_count = len(unique_models)
+        print(unique_model_count)
 
-
-        # Count unique values inside a list
-
-
-
-
-
-
-
-        # Count how many different models of porsche is in the results on the first page and return in the terminal how many of each type exists.
+        # return in the terminal how many of each type exists.
         # Possible values can be “CAYENNE S”, “BOXSTER S”, etc.
 
 
