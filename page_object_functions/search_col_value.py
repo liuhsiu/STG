@@ -6,7 +6,7 @@ class SearchColValue:
         rows = table.find_elements(By.XPATH, "tr")  # get all of the rows in the table
         text_list = []
         for row in rows:
-            col = row.find_elements(By.XPATH, "td")[col_num]  # note: index start from 0, 1 is col 2
+            col = row.find_elements(By.XPATH, "td" or "td style")[col_num]  # note: index start from 0, 1 is col 2
             #print(col.text)
             text_list.append(col.text)
 
