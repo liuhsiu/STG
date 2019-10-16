@@ -5,9 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from challenge_5.search_col_value import SearchColValue
-from challenge_5.unique_list import UniqueList
-from collections import Counter
+from page_object_functions.search_col_value import SearchColValue
 
 
 class Challenge5(unittest.TestCase):
@@ -19,7 +17,7 @@ class Challenge5(unittest.TestCase):
         self.driver.close()
         print('in tear down method')
 
-    def test_show_model_entries_100(self):
+    def test_show_model_100_entries(self):
         self.driver.get("https://www.copart.com")
         searchfield = self.driver.find_element(By.ID, "input-search")
         searchfield.send_keys("PORSCHE" + Keys.ENTER)
@@ -41,33 +39,26 @@ class Challenge5(unittest.TestCase):
         serverSideDataTable = WebDriverWait(self.driver, 60).until(
             EC.presence_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable\"]/tbody")))
 
+        # -----------------------------------------------------------------------------------------
+        # return in the terminal how many of each type exists.
+        # Possible values can be “CAYENNE S”, “BOXSTER S”, etc.
         # get values from model column
-        model_col = 5
-        model_list = SearchColValue.search_col_value(serverSideDataTable, model_col)
+        model_col_num = 5
+        model = SearchColValue()
+        model_list = model.search_col_value(self, serverSideDataTable, model_col_num)
         print(model_list)
 
         #Count how many different models of porsche is in the results on the first page
-        unique_models = set(model_list)
-        unique_model_count = len(SearchColValue.search_col_value(serverSideDataTable, unique_models))
-        print(unique_model_count)
+        SearchColValue.set_unique_list(self, model_list)
 
-        # return in the terminal how many of each type exists.
-        # Possible values can be “CAYENNE S”, “BOXSTER S”, etc.
-
-        # -----------------------------------------------------------------------------------------
         # get values from damage column
-        damage_col = 11
-        damage_list = SearchColValue.search_col_value(serverSideDataTable, damage_col)
+        damage_col_num = 11
+        damage = SearchColValue()
+        damage_list = damage.search_col_value(self, serverSideDataTable, damage_col_num)
         print(damage_list)
 
-
-
-
-
-
-
-
-
+        # Count how many different models of porsche is in the results on the first page
+        SearchColValue.set_unique_list(self, damage_list)
 
 if __name__ == '__main__':
     unittest.main()

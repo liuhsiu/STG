@@ -1,13 +1,7 @@
 import unittest
-import time
-from selenium import webdriver
 
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-from challenge_4.recur_fibo import RecurFibo
-from challenge_4.convert_num_to_string import ConvertNumToString
+from page_object_functions.recur_fibo import RecurFibo
+from page_object_functions.convert_num_to_string import ConvertNumToString
 
 
 class Challenge4(unittest.TestCase):
