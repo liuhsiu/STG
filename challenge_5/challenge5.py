@@ -19,6 +19,8 @@ class Challenge5(unittest.TestCase):
 
     def test_show_model_100_entries(self):
         self.driver.get("https://www.copart.com")
+        self.driver.maximize_window()
+
         searchfield = self.driver.find_element(By.ID, "input-search")
         searchfield.send_keys("PORSCHE" + Keys.ENTER)
         table = WebDriverWait(self.driver, 60).until(
@@ -43,6 +45,7 @@ class Challenge5(unittest.TestCase):
         # return in the terminal how many of each type exists.
         # Possible values can be “CAYENNE S”, “BOXSTER S”, etc.
         # get values from model column
+
         model_col_num = 5
         model = SearchColValue()
         model_list = model.search_col_value(self, serverSideDataTable, model_col_num)
@@ -54,13 +57,22 @@ class Challenge5(unittest.TestCase):
         # get values from damage column
         damage_col_num = 11
         damage = SearchColValue()
+
+        # Count how many different damage of porsche is in the results on the first page
         damage_list = damage.search_col_value(self, serverSideDataTable, damage_col_num)
         print(damage_list)
 
-        # Count how many different models of porsche is in the results on the first page
         SearchColValue.set_unique_list(self, damage_list)
 
+        # For the 2nd part of this challenge, create a switch statement to count the types of damages
+        # Here's the types:
+        # REAR END
+        # FRONT END
+        # MINOR DENT/SCRATCHIES
+        # UNDERCARRIAGE
+        # AND ANY OTHER TYPES CAN BE GROUPED INTO ONE OF MISC.
 
+        SearchColValue.damage_type(self, damage)
 
 
 if __name__ == '__main__':
