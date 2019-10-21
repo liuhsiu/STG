@@ -60,5 +60,8 @@ class Challenge5(unittest.TestCase):
         # Count how many different models of porsche is in the results on the first page
         SearchColValue.set_unique_list(self, damage_list)
 
+
+
+
 if __name__ == '__main__':
     unittest.main()

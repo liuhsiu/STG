@@ -13,8 +13,6 @@ class SearchColValue:
         return text_list
 
     def set_unique_list(self, list1):
-        # To get the number of occurrences
-        # of each item in a list
         print("\r\nTo get the number of occurrences of each item in a list: ")
         print([[l, list1.count(l)] for l in set(list1)], sep="\r\n")
 
