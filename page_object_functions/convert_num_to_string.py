@@ -4,8 +4,8 @@ class ConvertNumToString:
     @staticmethod
     def convert_num_to_string(number):
         singledigits = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+        tens = [" ", " ", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
         teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
-        tens = [" ", " ", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
 
         temp_str = ""
         if number == 0:
