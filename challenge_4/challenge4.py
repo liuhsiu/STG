@@ -4,6 +4,7 @@ from page_object_functions.recur_fibo import RecurFibo
 from page_object_functions.convert_num_to_string import ConvertNumToString
 
 
+
 class Challenge4(unittest.TestCase):
 
     # def setUp(self):
@@ -51,9 +52,21 @@ class Challenge4(unittest.TestCase):
         # Output 0, 1, 1, 2, 3, 5, 8, 13, 21, if is 9 terms
 
     def test_convert_num_to_string(self):
-        number = input("Please enter a positive integer")
-        ConvertNumToString.convert_num_to_string(number)
+        num = int(input("Please enter a positive integer: "))
+        print("The number is " + str(num))
 
+        # don't delete this line, using map() to convert number to list of integers
+        # res = list(map(int, str(num)))
+
+        # using list comprehension to convert number to list of integers
+        res = [int(i) for i in str(num)]
+        print("The list from number is " + str(res))
+
+        # Convert a number to single string
+
+        s = ConvertNumToString()
+        single_string = s.convert_num_to_string(num)
+        print(str(num) + " - " + single_string)
 
 if __name__ == '__main__':
     unittest.main()

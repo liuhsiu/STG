@@ -30,7 +30,8 @@ class SearchColValue:
     # Implement Python Switch Case Statement using Dictionary
     def damage_type(self, list1):
         def rear_end():
-            return "REAR END"
+            x = dict((l, list1.count(l)) for l in set(list1))
+            return x
         def front_end():
             return "FRONT END"
         def minor_dent_scratchies():
