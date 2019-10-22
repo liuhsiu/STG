@@ -31,7 +31,6 @@ class Challenge4(unittest.TestCase):
         print("The list from number is " + str(res))
 
         # Convert a number to single string
-
         s = ConvertNumToString()
         single_string = s.convert_num_to_string(num)
         print(str(num) + " - " + single_string)
