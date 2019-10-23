@@ -30,20 +30,18 @@ class Challenge_5_2(unittest.TestCase):
         scroll_into_middle = view_port_height + element_top + js_function
         self.driver.execute_script(scroll_into_middle, most_10_popular_essential_oils)
 
-        frankincense_oil = self.driver.find_element(By.XPATH, "//a[contains(@href,'https://www.doterra.com/US/en/p/frankincense-oil') and contains(.,'Frankincense oil')]")
+        # Click on 10 most popular essential oils link and validate the URL page
+        Challenge_5_2.element_and_link(self, "//a[contains(@href,'https://www.doterra.com/US/en/p/frankincense-oil') and contains(.,'Frankincense oil')]",
+                                       "https://www.doterra.com/US/en/p/frankincense-oil")
+
+
+
+    def element_and_link(self, oil_elm, oil_url):
+        frankincense_oil = self.driver.find_element(By.XPATH, oil_elm)
         frankincense_oil.click()
-
-        frankincense_oil_url = "https://www.doterra.com/US/en/p/frankincense-oil"
         URL = self.driver.current_url
-
-        try:
-            WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.LINK_TEXT, frankincense_oil_url)))
-            not_found = False
-        except:
-            not_found = True
-
-        assert not_found
+        self.assertEqual(URL, oil_url)
+        self.driver.execute_script("window.history.go(-1)")  # back to previous page
 
 
 if __name__ == '__main__':
