@@ -31,14 +31,41 @@ class Challenge_5_2(unittest.TestCase):
         self.driver.execute_script(scroll_into_middle, most_10_popular_essential_oils)
 
         # Click on 10 most popular essential oils link and validate the URL page
-        Challenge_5_2.element_and_link(self, "//a[contains(@href,'https://www.doterra.com/US/en/p/frankincense-oil') and contains(.,'Frankincense oil')]",
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'https://www.doterra.com/US/en/p/frankincense-oil') and contains(.,'Frankincense oil')]",
                                        "https://www.doterra.com/US/en/p/frankincense-oil")
-
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'http://www.doterra.com/US/en/p/lavender-oil') and contains(.,'Lavender oil')]",
+                                       "https://www.doterra.com/US/en/p/lavender-oil")
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'http://www.doterra.com/US/en/p/copaiba-oil') and contains(.,'Copaiba oil')]",
+                                       "https://www.doterra.com/US/en/p/copaiba-oil")
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'http://www.doterra.com/US/en/p/lemon-oil') and contains(.,'Lemon oil')]",
+                                       "https://www.doterra.com/US/en/p/lemon-oil")
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'http://www.doterra.com/US/en/p/wild-orange-oil') and contains(.,'Wild Orange oil')]",
+                                       "https://www.doterra.com/US/en/p/wild-orange-oil")
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'http://www.doterra.com/US/en/p/peppermint-oil') and contains(.,'Peppermint oil')]",
+                                       "https://www.doterra.com/US/en/p/peppermint-oil")
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'http://www.doterra.com/US/en/p/melaleuca-oil') and contains(.,'Tea Tree oil (Melaleuca)')]",
+                                       "https://www.doterra.com/US/en/p/melaleuca-oil")
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'http://www.doterra.com/US/en/p/ginger-oil') and contains(.,'Ginger oil')]",
+                                       "https://www.doterra.com/US/en/p/ginger-oil")
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'http://www.doterra.com/US/en/p/grapefruit-oil') and contains(.,'Grapefruit oil')]",
+                                       "https://www.doterra.com/US/en/p/grapefruit-oil")
+        Challenge_5_2.element_and_link(self,
+                                       "//a[contains(@href,'http://www.doterra.com/US/en/p/eucalyptus-oil') and contains(.,'Eucalyptus oil')]",
+                                       "https://www.doterra.com/US/en/p/eucalyptus-oil")
 
 
     def element_and_link(self, oil_elm, oil_url):
-        frankincense_oil = self.driver.find_element(By.XPATH, oil_elm)
-        frankincense_oil.click()
+        oil = self.driver.find_element(By.XPATH, oil_elm)
+        oil.click()
         URL = self.driver.current_url
         self.assertEqual(URL, oil_url)
         self.driver.execute_script("window.history.go(-1)")  # back to previous page
