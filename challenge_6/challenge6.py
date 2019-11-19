@@ -1,11 +1,13 @@
-import unittest
+import unittest, sys, pyautogui
 import time
+import PIL
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from page_object_functions.search_col_value import SearchColValue
+from page_object_functions.verify_image import CheckURLToJPG
 from PIL import Image, ImageFile
 
 
@@ -17,6 +19,24 @@ class Challenge6(unittest.TestCase):
     def tearDown(self):
         self.driver.close()
         print('in tear down method')
+        # type, value, traceback = sys.exc_info()
+        # if type is exceptions.AssertionError:
+        #     self.driver.save_screenshot(r'screenshot-failure.png')
+        # elif type is exceptions.Exception:
+        #     self.driver.save_screenshot(r'screenshot-error.png')
+
+        self.driver.close()
+        print('in tear down method')
+
+    def screenshot(self, func):
+        def screenshot_exception(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except:
+                self.driver.save_screenshot('{0}/{1}.jpeg'.format(screenshot_dir, self.id()))
+                raise
+
+        return screenshot_exception
 
     def test_error_handling(self):
         self.driver.get("https://www.copart.com")
@@ -44,60 +64,69 @@ class Challenge6(unittest.TestCase):
         skylineCheckBox = self.driver.find_element(By.XPATH, "//*[@id=\"lot_model_descSKYLINE\"]")
         skylineCheckBox.click()
 
-
-        # When the link does not exist to click on, your script will throw an exception.
         try:
-            # Load an image from the hard drive
-            original = Image.open("Lenna.png")
-
-            # Blur the image
-            blurred = original.filter(ImageFilter.BLUR)
-
-            # Display both images
-            original.show()
-            blurred.show()
-
-            # save the new image
-            blurred.save("blurred.png")
+            print(CheckURLToJPG.existsURL(
+                'https://cs.copart.com/v1/AUTH_svc.pdoc00001/PIX197/b1e084be-90bb-4709-aca0-2f1691105a9a.JPG'))
+            print(CheckURLToJPG.existsURL(
+                'https://cs.copart.com/v1/AUTH_svc.pdoc00001/PIX206/6d8a784f-13e3-4447-9571-62c5d5dffae1.JPG'))
 
         except:
-            print("Unable to load image")
+            print("images are not same")
 
-        #myimage.load()
+            #myimage.load()
+            # -------------------------------------------------------------------------------
+            #  Catch the exception and take a screenshot of the page of what it looks like.
+            options = webdriver.ChromeOptions()
+            options.add_argument('--ignore-certificate-errors')
+            options.add_argument("--test-type")
+            #options.binary_location = "/usr/bin/chromium"
+            driver = webdriver.Chrome(chrome_options=options)
 
-        # -------------------------------------------------------------------------------
-        #  Catch the exception and take a screenshot of the page of what it looks like.
-        options = webdriver.ChromeOptions()
-        options.add_argument('--ignore-certificate-errors')
-        options.add_argument("--test-type")
-        options.binary_location = "/usr/bin/chromium"
-        driver = webdriver.Chrome(chrome_options=options)
+            #driver.get('https://python.org')
+            #im1 = Image.open(r"C:\Users\clee1\Desktop\image1.jpg")
+            im1 = Image.open(r"C:\Users\clee1\Desktop")
+            im1 = im1.save("image1.jpg")
+            driver.save_screenshot("screenshot.png")
+            driver.close()
 
-        driver.get('https://python.org')
-        driver.save_screenshot("screenshot.png")
+            # import math, operator
+            # from PIL import Image
+            # def compare(file1, file2):
+            #     image1 = Image.open("/home/pi/Desktop/1.jpg)
+            #     image2 = Image.open("/home/pi/Desktop/2.jpg")
+            #     h1 = image1.histogram()
+            #     h2 = image2.histogram()
+            #     rms = math.sqrt(reduce(operator.add,
+            #                            map(lambda a, b: (a - b) ** 2, h1, h2)) / len(h1))
+            #     return rms
+            #
+            # if __name__ == '__main__':
+            #     import sys
+            #     file1, file2 = sys.argv[1:]
+            #     print
+            #     compare(file1, file2)
 
-        driver.close()
 
 
-        # -------------------------------------------------------------------------------
-        # Capture screenshot of an Element
-        driver = webdriver.Firefox(executable_path='[Browser Driver Path]');
-        driver.get('https://www.google.co.in');
-        element = driver.find_element_by_xpath("//div[@id='hplogo']");
-
-        location = element.location;
-        size = element.size;
-
-        driver.save_screenshot("/data/image.png");
-
-        x = location['x'];
-        y = location['y'];
-        width = location['x'] + size['width'];
-        height = location['y'] + size['height'];
-
-        im = Image.open('/data/WorkArea/image.png')
-        im = im.crop((int(x), int(y), int(width), int(height)))
-        im.save('/data/image.png')
+        # # -------------------------------------------------------------------------------
+        # # Capture screenshot of an Element
+        # driver = webdriver.Firefox(executable_path='[Browser Driver Path]');
+        # driver.get('https://www.google.co.in');
+        # element = driver.find_element_by_xpath("//div[@id='hplogo']");
+        #
+        # location = element.location;
+        # size = element.size;
+        #
+        # driver.save_screenshot("/data/image.png");
+        #
+        # x = location['x'];
+        # y = location['y'];
+        # width = location['x'] + size['width'];
+        # height = location['y'] + size['height'];
+        #
+        # im = Image.open('/data/WorkArea/image.png')
+        # im = im.crop((int(x), int(y), int(width), int(height)))
+        # im.save('/data/image.png')
 
 
 
@@ -111,48 +140,7 @@ class Challenge6(unittest.TestCase):
         #         self.input_box['state'] = NORMAL
 
 
-        # Search for “porsche” and change the drop down for “Show Entries” to 100 from 20.
-        showentries = WebDriverWait(self.driver, 60).until(
-            EC.presence_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable_length\"]/label/select")))
-        showentries.click()
-        showentries.send_keys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER)
-        time.sleep(5)
-
-        serverSideDataTable = WebDriverWait(self.driver, 60).until(
-            EC.presence_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable\"]/tbody")))
-
-        # -----------------------------------------------------------------------------------------
-        # return in the terminal how many of each type exists.
-        # Possible values can be “CAYENNE S”, “BOXSTER S”, etc.
-        # get values from model column
-
-        model_col_num = 5
-        model = SearchColValue()
-        model_list = model.search_col_value(self, serverSideDataTable, model_col_num)
-        print(model_list)
-
-        #Count how many different models of porsche is in the results on the first page
-        SearchColValue.set_unique_list(self, model_list)
-
-        # get values from damage column
-        damage_col_num = 11
-        damage = SearchColValue()
-
-        # Count how many different damage of porsche is in the results on the first page
-        damage_list = damage.search_col_value(self, serverSideDataTable, damage_col_num)
-        print(damage_list)
-
-        SearchColValue.set_unique_list(self, damage_list)
-
-        # For the 2nd part of this challenge, create a switch statement to count the types of damages
-        # Here's the types:
-        # REAR END
-        # FRONT END
-        # MINOR DENT/SCRATCHIES
-        # UNDERCARRIAGE
-        # AND ANY OTHER TYPES CAN BE GROUPED INTO ONE OF MISC.
-
-        SearchColValue.damage_type(self, damage)
+        #
 
 
 if __name__ == '__main__':

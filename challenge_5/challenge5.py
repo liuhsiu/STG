@@ -31,7 +31,7 @@ class Challenge5(unittest.TestCase):
         self.assertIn("PORSCHE", html)
         searchfield.send_keys(Keys.ENTER)
 
-        # Search for “porsche” and change the drop down for “Show Entries” to 100 from 20.
+        #Change the drop down for “Show Entries” to 100 from 20.
         showentries = WebDriverWait(self.driver, 60).until(
             EC.presence_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable_length\"]/label/select")))
         showentries.click()
