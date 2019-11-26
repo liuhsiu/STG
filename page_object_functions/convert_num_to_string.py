@@ -30,4 +30,3 @@ class ConvertNumToString:
             if temp_str[-1] == " ":  # If the last number is a space
                 temp_str = temp_str[0:-1]  # Slice it
         return temp_str
-

@@ -1,4 +1,6 @@
 import unittest, sys, pyautogui
+import urllib
+import lxml.html
 import time
 import PIL
 from selenium import webdriver
@@ -55,92 +57,39 @@ class Challenge6(unittest.TestCase):
         modelFilter = self.driver.find_element(By.XPATH, "//*[@id=\"filters-collapse-1\"]/div[1]/ul/li[4]/h4/a[1]")
         modelFilter.click()
 
-        searchfilterInput = WebDriverWait(self.driver, 60).until(
-            EC.presence_of_element_located((By.XPATH, "//*[@id=\"collapseinside4\"]/form/div/input")))
-        searchfilterInput.send_keys("skyline" + Keys.ENTER)
-
-        time.sleep(3)
-
-        skylineCheckBox = self.driver.find_element(By.XPATH, "//*[@id=\"lot_model_descSKYLINE\"]")
-        skylineCheckBox.click()
-
         try:
-            print(CheckURLToJPG.existsURL(
-                'https://cs.copart.com/v1/AUTH_svc.pdoc00001/PIX197/b1e084be-90bb-4709-aca0-2f1691105a9a.JPG'))
-            print(CheckURLToJPG.existsURL(
-                'https://cs.copart.com/v1/AUTH_svc.pdoc00001/PIX206/6d8a784f-13e3-4447-9571-62c5d5dffae1.JPG'))
+            searchfilterInput = WebDriverWait(self.driver, 60).until(
+                EC.presence_of_element_located((By.XPATH, "//*[@id=\"collapseinside4\"]/form/div/input")))
+            searchfilterInput.send_keys("skyline" + Keys.ENTER)
+
+            time.sleep(3)
+
+            skylineCheckBox = self.driver.find_element(By.XPATH, "//*[@id=\"lot_model_descSKYLINE\"]")
+            skylineCheckBox.click()
+
+            # Array or List or Dictionary to store how many vehicles,
+
 
         except:
-            print("images are not same")
+            self.driver.save_screenshot("screenshot.png")
+            self.driver.close()
 
-            #myimage.load()
-            # -------------------------------------------------------------------------------
-            #  Catch the exception and take a screenshot of the page of what it looks like.
-            options = webdriver.ChromeOptions()
-            options.add_argument('--ignore-certificate-errors')
-            options.add_argument("--test-type")
-            #options.binary_location = "/usr/bin/chromium"
-            driver = webdriver.Chrome(chrome_options=options)
-
-            #driver.get('https://python.org')
-            #im1 = Image.open(r"C:\Users\clee1\Desktop\image1.jpg")
-            im1 = Image.open(r"C:\Users\clee1\Desktop")
-            im1 = im1.save("image1.jpg")
-            driver.save_screenshot("screenshot.png")
-            driver.close()
-
-            # import math, operator
-            # from PIL import Image
-            # def compare(file1, file2):
-            #     image1 = Image.open("/home/pi/Desktop/1.jpg)
-            #     image2 = Image.open("/home/pi/Desktop/2.jpg")
-            #     h1 = image1.histogram()
-            #     h2 = image2.histogram()
-            #     rms = math.sqrt(reduce(operator.add,
-            #                            map(lambda a, b: (a - b) ** 2, h1, h2)) / len(h1))
-            #     return rms
-            #
-            # if __name__ == '__main__':
-            #     import sys
-            #     file1, file2 = sys.argv[1:]
-            #     print
-            #     compare(file1, file2)
+        assert False  # At least one vehicles exist then pass
 
 
-
-        # # -------------------------------------------------------------------------------
-        # # Capture screenshot of an Element
-        # driver = webdriver.Firefox(executable_path='[Browser Driver Path]');
-        # driver.get('https://www.google.co.in');
-        # element = driver.find_element_by_xpath("//div[@id='hplogo']");
+        # try:
+        #     print(CheckURLToJPG.existsURL(
+        #         'https://cs.copart.com/v1/AUTH_svc.pdoc00001/PIX197/b1e084be-90bb-4709-aca0-2f1691105a9a.JPG'))
+        #     print(CheckURLToJPG.existsURL(
+        #         'https://cs.copart.com/v1/AUTH_svc.pdoc00001/PIX206/6d8a784f-13e3-4447-9571-62c5d5dffae1.JPG'))
         #
-        # location = element.location;
-        # size = element.size;
+        # except:
+        #     # Save image, compare images.  If not same, take a screenshot and throw an exception
+        #     print("image are not same")
         #
-        # driver.save_screenshot("/data/image.png");
-        #
-        # x = location['x'];
-        # y = location['y'];
-        # width = location['x'] + size['width'];
-        # height = location['y'] + size['height'];
-        #
-        # im = Image.open('/data/WorkArea/image.png')
-        # im = im.crop((int(x), int(y), int(width), int(height)))
-        # im.save('/data/image.png')
 
 
 
-
-
-        # def FlipState(self):
-        #     self.test = self.CheckMode.get()
-        #     if self.test == 1:  # checked
-        #         self.input_box['state'] = DISABLED
-        #     elif self.test == 0:  # unchecked
-        #         self.input_box['state'] = NORMAL
-
-
-        #
 
 
 if __name__ == '__main__':
