@@ -83,7 +83,8 @@ class Challenge6(unittest.TestCase):
             self.driver.save_screenshot("screenshot.png")
             self.driver.close()
 
-        assert False  # At least one vehicles exist then pass
+        assert False # At least one vehicles exist then pass
+
 
 
         # try:
