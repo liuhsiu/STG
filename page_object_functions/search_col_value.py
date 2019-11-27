@@ -23,7 +23,7 @@ class SearchColValue:
         list_row = dict((l, list1.count(l)) for l in set(list1))
         print("\r\n".join(list_row))
 
-        print("\r\nTotal different types of the items is: ")
+        print("\r\nTotal different types of vehicles is: ")
         print(len(list_row))
         print("\r\n")
 

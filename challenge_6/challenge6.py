@@ -68,7 +68,16 @@ class Challenge6(unittest.TestCase):
             skylineCheckBox.click()
 
             # Array or List or Dictionary to store how many vehicles,
+            serverSideDataTable = WebDriverWait(self.driver, 60).until(
+                EC.presence_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable\"]/tbody")))
 
+            model_col_num = 5
+            model = SearchColValue()
+            model_list = model.search_col_value(self, serverSideDataTable, model_col_num)
+            print(model_list)
+
+            # Count how many different models of porsche is in the results on the first page
+            SearchColValue.set_unique_list(self, model_list)
 
         except:
             self.driver.save_screenshot("screenshot.png")
