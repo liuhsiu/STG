@@ -1,3 +1,4 @@
+import sys
 import requests
 import unittest
 import time
@@ -48,11 +49,14 @@ class Challenge8(unittest.TestCase):
             }
 
         response = requests.request("POST", url, data=payload, headers=headers)
-
         print(response.text)
 
         # Save output to a log file then show many totalElements
+        # f = open('response.txt', 'w')
+        # print(response, file=f)
 
+        with open('response.txt', 'w') as outfile:
+            print >> outfile, 'Data collected on:', input['header']['timestamp'].date()
 
 
 
