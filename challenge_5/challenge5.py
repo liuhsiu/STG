@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from page_object_functions.search_col_value import SearchColValue
-
+from page_object_functions.search_col_value import CountType
 
 class Challenge5(unittest.TestCase):
 
@@ -72,7 +72,13 @@ class Challenge5(unittest.TestCase):
         # UNDERCARRIAGE
         # AND ANY OTHER TYPES CAN BE GROUPED INTO ONE OF MISC.
 
-        SearchColValue.damage_type(self, damage)
+        CountType.switch_demo(damage_list)
+        CountType.switch_demo(2)
+
+
+
+
+
 
 
 if __name__ == '__main__':

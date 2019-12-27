@@ -24,27 +24,44 @@ class SearchColValue:
         print("\r\n".join(list_row))
 
         print("\r\nTotal different types of vehicles is: ")
-        print(len(list_row))
+        print("\r\n".len(list_row))
         print("\r\n")
 
-    # Implement Python Switch Case Statement using Dictionary
-    def damage_type(self, list1):
-        def rear_end():
-            x = dict((l, list1.count(l)) for l in set(list1))
-            return x
-        def front_end():
-            return "FRONT END"
-        def minor_dent_scratchies():
-            return "MINOR DENT/SCRATCHIES"
-        def undercarriage():
-            return "UNDERCARRIAGE"
-        def default():
-            return "MISC"
 
+class CountType:
+    # @staticmethod
+    # def rear_end(self, list):
+    #     return 'REAR END'
+    # def front_end(self, list):
+    #     return 'FRONT END'
+    # def minor_dent_scratches(self, list):
+    #     return 'MINOR DENT/SCRATCHES'
+    # def undercarriage(self, list):
+    #     return 'UNDERCARRIAGE'
+    # def default(self, list):
+    #     print("MISC")
+    #     #return not('REAR END') AND ('FRONT END') AND ('MINOR DENT/SCRATCHES') AND ('UNDERCARRIAGE')
+
+    def switch_demo(list1):
         switcher = {
-            1: rear_end,
-            2: front_end,
-            3: minor_dent_scratchies,
-            4: undercarriage,
+            0: "REAR END",
+            1: "FRONT END",
+            2: "MINOR DENT/SCRATCHES",
+            3: "UNDERCARRIAGE",
+            4: "default",
         }
-        return(switcher.get(list1, default))
+        return (switcher.get(list1, "Invalid vehicle"))
+
+
+
+    # # Implement Python Switch Case Statement using Dictionary
+    # switcher = {
+    #     1: front_end,
+    #     2: front_end,
+    #     3: minor_dent_scratches,
+    #     4: undercarriage,
+    # }
+    #
+    # def switch(item):
+    #     return SearchColValue.switcher.get(item, SearchColValue.default)()
+

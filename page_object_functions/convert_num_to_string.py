@@ -23,7 +23,7 @@ class ConvertNumToString:
         if second_digit >= 0:
             temp_str = temp_str + tens[second_digit] + ' '
         if third_digit >= 0:
-            temp_str = temp_str + singledigits[third_digit] + 'thousand '
+            temp_str = temp_str + singledigits[third_digit] + ' thousand '
         if fourth_digit > 1:
             temp_str = temp_str + singledigits[fourth_digit] + ' hundred '
         if fifth_digit > 1:
