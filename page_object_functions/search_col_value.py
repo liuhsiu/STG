@@ -23,45 +23,63 @@ class SearchColValue:
         list_row = dict((l, list1.count(l)) for l in set(list1))
         print("\r\n".join(list_row))
 
-        print("\r\nTotal different types of vehicles is: ")
-        print("\r\n".len(list_row))
-        print("\r\n")
+        # print("\r\nTotal different types of vehicles is: ")
+        # #print("\r\n".len(list_row))
+        # print("\r\n")
 
 
 class CountType:
-    # @staticmethod
-    # def rear_end(self, list):
-    #     return 'REAR END'
-    # def front_end(self, list):
-    #     return 'FRONT END'
-    # def minor_dent_scratches(self, list):
-    #     return 'MINOR DENT/SCRATCHES'
-    # def undercarriage(self, list):
-    #     return 'UNDERCARRIAGE'
-    # def default(self, list):
-    #     print("MISC")
-    #     #return not('REAR END') AND ('FRONT END') AND ('MINOR DENT/SCRATCHES') AND ('UNDERCARRIAGE')
+    #@staticmethod
+    def rear_end(self, list1):
+        return "REAR END"
+    def front_end(self,list1):
+        return "FRONT END"
+    def minor_dent_scratches(self,list1):
+        return "MINOR DENT/SCRATCHES"
+    def undercarriage(self,list1):
+        return "UNDERCARRIAGE"
+    def default(self,list1):
+        return "MISC"
+        #return not (('REAR END'), ('FRONT END'), ('MINOR DENT/SCRATCHES'), ('UNDERCARRIAGE'))
 
-    def switch_demo(list1):
-        switcher = {
-            0: "REAR END",
-            1: "FRONT END",
-            2: "MINOR DENT/SCRATCHES",
-            3: "UNDERCARRIAGE",
-            4: "default",
+    switcher = {
+        1: rear_end,
+        2: front_end,
+        3: minor_dent_scratches,
+        4: undercarriage
         }
-        return (switcher.get(list1, "Invalid vehicle"))
 
-
-
-    # # Implement Python Switch Case Statement using Dictionary
-    # switcher = {
-    #     1: front_end,
-    #     2: front_end,
-    #     3: minor_dent_scratches,
-    #     4: undercarriage,
-    # }
+    # ------------------------------------------------------------------------------
+    # def monday(self):
+    #     return "monday"
     #
-    # def switch(item):
-    #     return SearchColValue.switcher.get(item, SearchColValue.default)()
-
+    # def tuesday(self):
+    #     return "tuesday"
+    #
+    # def wednesday(self):
+    #     return "wednesday"
+    #
+    # def thursday(self):
+    #     return "thursday"
+    #
+    # def friday(self):
+    #     return "friday"
+    #
+    # def saturday(self):
+    #     return "saturday"
+    #
+    # def sunday(self):
+    #     return "sunday"
+    #
+    # def default(self):
+    #     return "Incorrect day"
+    #
+    # switcher = {
+    #     1: monday,
+    #     2: tuesday,
+    #     3: wednesday,
+    #     4: thursday,
+    #     5: friday,
+    #     6: saturday,
+    #     7: sunday
+    # }

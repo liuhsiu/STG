@@ -72,13 +72,17 @@ class Challenge5(unittest.TestCase):
         # UNDERCARRIAGE
         # AND ANY OTHER TYPES CAN BE GROUPED INTO ONE OF MISC.
 
-        CountType.switch_demo(damage_list)
-        CountType.switch_demo(2)
+        # damage dictionary
+        damage_type = dict((l, damage_list.count(l))
+                         for l in set(damage_list))
 
+        def switch(damage_type):
+            return CountType.switcher.get(damage_type, CountType.default)()
 
-
-
-
+        print(switch(1))
+        print(switch(2))
+        print(switch(3))
+        print(switch(4))
 
 
 if __name__ == '__main__':
