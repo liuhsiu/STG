@@ -82,25 +82,8 @@ class Challenge6(unittest.TestCase):
         except:
             self.driver.save_screenshot("screenshot.png")
             self.driver.close()
-
-        assert False # At least one vehicles exist then pass
-
-
-
-        # try:
-        #     print(CheckURLToJPG.existsURL(
-        #         'https://cs.copart.com/v1/AUTH_svc.pdoc00001/PIX197/b1e084be-90bb-4709-aca0-2f1691105a9a.JPG'))
-        #     print(CheckURLToJPG.existsURL(
-        #         'https://cs.copart.com/v1/AUTH_svc.pdoc00001/PIX206/6d8a784f-13e3-4447-9571-62c5d5dffae1.JPG'))
-        #
-        # except:
-        #     # Save image, compare images.  If not same, take a screenshot and throw an exception
-        #     print("image are not same")
-        #
-
-
-
-
+            assert False, "image are not same"  # At least one vehicles exist then pass
+            
 
 if __name__ == '__main__':
     unittest.main()
