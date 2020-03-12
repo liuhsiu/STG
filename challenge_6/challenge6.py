@@ -83,7 +83,7 @@ class Challenge6(unittest.TestCase):
             self.driver.save_screenshot("screenshot.png")
             self.driver.close()
             assert False, "image are not same"  # At least one vehicles exist then pass
-            
+
 
 if __name__ == '__main__':
     unittest.main()
