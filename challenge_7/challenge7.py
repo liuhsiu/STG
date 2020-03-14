@@ -26,7 +26,10 @@ class Challenge7(unittest.TestCase):
         print(len(makes_models))
 
         for x in makes_models:
-            print(x.text + "-" + x.get_attribute("href"))  # Return type none
+            try:
+                print(x.text + "-" + x.get_attribute("href"))  # Return type none
+            except:
+                print("x didn't have attribute")
 
 
 

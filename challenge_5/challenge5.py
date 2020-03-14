@@ -6,7 +6,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from page_object_functions.search_col_value import SearchColValue
-from page_object_functions.search_col_value import CountType
+from functools import partial
+#from page_object_functions.search_col_value import CountType
+
 
 class Challenge5(unittest.TestCase):
 
@@ -72,17 +74,49 @@ class Challenge5(unittest.TestCase):
         # UNDERCARRIAGE
         # AND ANY OTHER TYPES CAN BE GROUPED INTO ONE OF MISC.
 
+        print('\n\nTo create a switch statement to count the types of damages')
+
         # damage dictionary
         damage_type = dict((l, damage_list.count(l))
                          for l in set(damage_list))
 
-        def switch(damage_type):
-            return CountType.switcher.get(damage_type, CountType.default)()
+        exclude_type = {'REAR END', 'FRONT END', 'MINOR DENT/SCRATCHES', 'UNDERCARRIAGE'}
 
-        print(switch(1))
-        print(switch(2))
-        print(switch(3))
-        print(switch(4))
+        misc_type = {x: damage_type[x] for x in damage_type
+                     if x not in exclude_type}
+
+        def rear_one(damage_type_disc):
+            return f"REAR END: {damage_type_disc['REAR END']}"
+
+        def front_end(damage_type_disc):
+            return f"FRONT END: {damage_type_disc['FRONT END']}"
+
+        def minor_dent_scratches(damage_type_disc):
+            return f"MINOR DENT/SCRATCHES: {damage_type_disc['MINOR DENT/SCRATCHES']}"
+
+        def undercarriage(damage_type_disc):
+            return f"UNDERCARRIAGE: {damage_type_disc['UNDERCARRIAGE']}"
+
+        def default(misc_type_disc):
+            return f"MISC: {misc_type_disc}"
+
+        def count_type(argument, damage_type_disc):
+            switcher = {
+                1: partial(rear_one, damage_type_disc),
+                2: partial(front_end, damage_type_disc),
+                3: partial(minor_dent_scratches, damage_type_disc),
+                4: partial(undercarriage, damage_type_disc),
+                5: partial(default, damage_type_disc)
+            }
+            # Get the function from switcher dictionary
+            func = switcher.get(argument, lambda: default(damage_type_disc))
+            print(func())
+
+        count_type(1, damage_type)
+        count_type(2, damage_type)
+        count_type(3, damage_type)
+        count_type(4, damage_type)
+        count_type(5, misc_type)
 
 
 if __name__ == '__main__':

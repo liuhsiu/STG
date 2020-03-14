@@ -28,58 +28,25 @@ class SearchColValue:
         # print("\r\n")
 
 
-class CountType:
-    #@staticmethod
-    def rear_end(self, list1):
-        return "REAR END"
-    def front_end(self,list1):
-        return "FRONT END"
-    def minor_dent_scratches(self,list1):
-        return "MINOR DENT/SCRATCHES"
-    def undercarriage(self,list1):
-        return "UNDERCARRIAGE"
-    def default(self,list1):
-        return "MISC"
-        #return not (('REAR END'), ('FRONT END'), ('MINOR DENT/SCRATCHES'), ('UNDERCARRIAGE'))
-
-    switcher = {
-        1: rear_end,
-        2: front_end,
-        3: minor_dent_scratches,
-        4: undercarriage
-        }
-
-    # ------------------------------------------------------------------------------
-    # def monday(self):
-    #     return "monday"
-    #
-    # def tuesday(self):
-    #     return "tuesday"
-    #
-    # def wednesday(self):
-    #     return "wednesday"
-    #
-    # def thursday(self):
-    #     return "thursday"
-    #
-    # def friday(self):
-    #     return "friday"
-    #
-    # def saturday(self):
-    #     return "saturday"
-    #
-    # def sunday(self):
-    #     return "sunday"
-    #
-    # def default(self):
-    #     return "Incorrect day"
-    #
-    # switcher = {
-    #     1: monday,
-    #     2: tuesday,
-    #     3: wednesday,
-    #     4: thursday,
-    #     5: friday,
-    #     6: saturday,
-    #     7: sunday
-    # }
+# class CountType:
+#     #@staticmethod
+#     def one():
+#         return "REAR END"
+#     def front_end(self,list1):
+#         return "FRONT END"
+#     def minor_dent_scratches(self,list1):
+#         return "MINOR DENT/SCRATCHES"
+#     def undercarriage(self,list1):
+#         return "UNDERCARRIAGE"
+#     def default(self,list1):
+#         return "MISC"
+#
+#     list1 = []
+#
+#     switcher = {
+#         1: "rear_end",
+#         2: "front_end",
+#         3: "minor_dent_scratches",
+#         4: "undercarriage",
+#         5: default
+#         }
