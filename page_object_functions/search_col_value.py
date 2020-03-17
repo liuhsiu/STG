@@ -27,26 +27,3 @@ class SearchColValue:
         # #print("\r\n".len(list_row))
         # print("\r\n")
 
-
-# class CountType:
-#     #@staticmethod
-#     def one():
-#         return "REAR END"
-#     def front_end(self,list1):
-#         return "FRONT END"
-#     def minor_dent_scratches(self,list1):
-#         return "MINOR DENT/SCRATCHES"
-#     def undercarriage(self,list1):
-#         return "UNDERCARRIAGE"
-#     def default(self,list1):
-#         return "MISC"
-#
-#     list1 = []
-#
-#     switcher = {
-#         1: "rear_end",
-#         2: "front_end",
-#         3: "minor_dent_scratches",
-#         4: "undercarriage",
-#         5: default
-#         }
