@@ -21,21 +21,13 @@ class Challenge6(unittest.TestCase):
     def tearDown(self):
         self.driver.close()
         print('in tear down method')
-        # type, value, traceback = sys.exc_info()
-        # if type is exceptions.AssertionError:
-        #     self.driver.save_screenshot(r'screenshot-failure.png')
-        # elif type is exceptions.Exception:
-        #     self.driver.save_screenshot(r'screenshot-error.png')
-
-        self.driver.close()
-        print('in tear down method')
 
     def screenshot(self, func):
         def screenshot_exception(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
             except:
-                self.driver.save_screenshot('{0}/{1}.jpeg'.format(screenshot_dir, self.id()))
+                self.driver.save_screenshot('{0}/{1}.jpn'.format(screenshot_dir, self.id()))
                 raise
 
         return screenshot_exception
@@ -80,9 +72,10 @@ class Challenge6(unittest.TestCase):
             SearchColValue.set_unique_list(self, model_list)
 
         except:
+            # myScreenshot = pyautogui.screenshot()
+            # myScreenshot.save(r'C:\Users\clee1\PycharmProjects\STG\challenge_6\screenshot1.png')
             self.driver.save_screenshot("screenshot.png")
-            self.driver.close()
-            #assert False, "image are not same"  # At least one vehicles exist then pass
+            print("image are not same") # At least one vehicles exist then pass
 
 
 if __name__ == '__main__':
