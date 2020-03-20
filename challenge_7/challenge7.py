@@ -22,11 +22,36 @@ class Challenge7(unittest.TestCase):
         self.driver.maximize_window()
 
         #makes_models = self.driver.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]/div[2]")
-        makes_models = self.driver.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]")
-        print(len(makes_models))
+        #makes_models = self.driver.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]")
+        #print(len(makes_models))
 
-        for x in makes_models:
+        #rows = table.find_elements(By.XPATH, "tr")  # get all of the rows in the table
+
+        #make_col = self.driver.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]/div[2]/div[1]/ul/li[1]")
+        make_row = self.driver.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]/div[2]")
+
+        # make_col
+        # // *[ @ id = "tabTrending"] / div[1] / div[2] / div[1] / ul
+        # // *[ @ id = "tabTrending"] / div[1] / div[2] / div[2] / ul
+        # // *[ @ id = "tabTrending"] / div[1] / div[2] / div[3] / ul
+        # // *[ @ id = "tabTrending"] / div[1] / div[2] / div[4] / ul
+
+        #make_row, make_col = (5, 4)
+        #arr = [[0 for i in range(make_row)] for j in range(make_row)]
+
+        # col_num = 0
+        #
+        # text_list = []
+        # for row in make_col:
+        #     col = row.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]/div[2]")[col_num]  # note: index start from 0, 1 is col 2
+        #     print(col.text)
+        #     text_list.append(col.text)
+        # return text_list
+
+        x = []
+        for x in make_row:
             try:
+                print(x.text)  # Return type none
                 print(x.text + "-" + x.get_attribute("href"))  # Return type none
             except:
                 print("x didn't have attribute")
