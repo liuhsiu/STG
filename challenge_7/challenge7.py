@@ -1,11 +1,18 @@
 import unittest
 import time
+
+from pyparsing import unicode
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from page_object_functions.search_col_value import SearchColValue
+from array import *
+import pandas as pd
+from html.parser import HTMLParser
+from lxml import html
+import requests
 
 
 class Challenge7(unittest.TestCase):
@@ -21,41 +28,36 @@ class Challenge7(unittest.TestCase):
         self.driver.get("https://www.copart.com")
         self.driver.maximize_window()
 
-        #makes_models = self.driver.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]/div[2]")
-        #makes_models = self.driver.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]")
-        #print(len(makes_models))
+        make_row = WebDriverWait(self.driver, 60).until(
+            EC.presence_of_element_located((By.XPATH, "//*[@id=\"tabTrending\"]//div[2]")))
 
-        #rows = table.find_elements(By.XPATH, "tr")  # get all of the rows in the table
+        # Print out each car name
+        make = make_row.text.split()
+        make_url = make_row.get_attribute("innerHTML")
 
-        #make_col = self.driver.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]/div[2]/div[1]/ul/li[1]")
-        make_row = self.driver.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]/div[2]")
+        # This will print all the html
+        for x in make:
+            for y in x:
+                print(make_url)
+            print("\n")
 
-        # make_col
-        # // *[ @ id = "tabTrending"] / div[1] / div[2] / div[1] / ul
-        # // *[ @ id = "tabTrending"] / div[1] / div[2] / div[2] / ul
-        # // *[ @ id = "tabTrending"] / div[1] / div[2] / div[3] / ul
-        # // *[ @ id = "tabTrending"] / div[1] / div[2] / div[4] / ul
+        # Scraper Class
+        class MyHTMLParser(HTMLParser):
+            def handle_starttag(self, tag, attrs):
+                print("Start tag:", tag)
 
-        #make_row, make_col = (5, 4)
-        #arr = [[0 for i in range(make_row)] for j in range(make_row)]
+            def handle_endtag(self, tag):
+                print("End tag :", tag)
 
-        # col_num = 0
-        #
-        # text_list = []
-        # for row in make_col:
-        #     col = row.find_elements(By.XPATH, "//*[@id=\"tabTrending\"]/div[1]/div[2]")[col_num]  # note: index start from 0, 1 is col 2
-        #     print(col.text)
-        #     text_list.append(col.text)
-        # return text_list
+            def handle_data(self, data):
+                print("Data:", data)
 
-        x = []
-        for x in make_row:
-            try:
-                print(x.text)  # Return type none
-                print(x.text + "-" + x.get_attribute("href"))  # Return type none
-            except:
-                print("x didn't have attribute")
+        parser = MyHTMLParser()
 
+        #  with open(r'C:\Users\...site_1.html', "r") as f:
+        #      page = f.read()
+        # tree = make_url.fromstring()
+        parser.feed(make_url)
 
 
 if __name__ == '__main__':
