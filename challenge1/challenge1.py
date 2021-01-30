@@ -16,5 +16,12 @@ class Challenge1(unittest.TestCase):
         self.driver.get("https://www.google.com")
         self.assertIn("Google", self.driver.title)
 
+    ## Linear Search
+    def find_transaction(transactions):
+        for index, element in enumerate(transactions):
+            if element['device_id'] == '00Z77':
+                return index
+        return -1
+
 if __name__ == '__main__':
     unittest.main()

@@ -13,7 +13,7 @@ from page_object_functions.search_col_value import SearchColValue
 from page_object_functions.verify_image import CheckURLToJPG
 from PIL import Image, ImageFile
 
-class ChallengeA(unittest.TestCase):
+class ChallengeA_Binary_Search(unittest.TestCase):
 
     def setUp(self):
         #code to startup webdriver
@@ -24,7 +24,7 @@ class ChallengeA(unittest.TestCase):
         self.driver.close()
         print('in tear down method')
 
-    def test_challengeA(self):
+    def test_challengeA_Binary_Search(self):
         #code for our test steps
         # self.driver.get("https://www.google.com")
         # self.assertIn("Google", self.driver.title)

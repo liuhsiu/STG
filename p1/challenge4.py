@@ -5,35 +5,71 @@ from page_object_functions.convert_num_to_string import ConvertNumToString
 
 
 
-class Challenge4(unittest.TestCase):
-    # Program to display the Fibonacci sequence up to n-th term where n is provided by the user
-    def test_recur_fibo(self):
-        nterms = int(input("How many terms? "))
+class P1Solution(unittest.TestCase):
+    # Given an arry of itnergers numbs and an integer target, retrn indices of the two numbers such that they add up to target.
+    # You may assume that each input would have exactly one solution, and you may not use the same element twice.
+    # You can return the answer in any order.
 
-        # check if the number of terms is valid
-        if nterms <= 0:
-            print("Please enter a positive integer")
-        else:
-            print("Fibonacci sequence:")
-            for i in range(nterms):
-                print(RecurFibo.recur_fibo(i))
-        # Output 0, 1, 1, 2, 3, 5, 8, 13, 21, if is 9 terms
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        h = {}
+        for i, num in enumerate(nums):
+            n = target - num
+            if n not in h:
+                h[num] = i
+            else:
+                return [h[n], i]
 
-    def test_convert_num_to_string(self):
-        num = int(input("Please enter a positive integer: "))
-        print("The number is " + str(num))
 
-        # don't delete this line, using map() to convert number to list of integers
-        # res = list(map(int, str(num)))
+    def twoSum2(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        complement_dict = {}
+        nums_len = len(nums)
+        for i in range(nums_len):
+            complement = target - nums[i]
+            if complement in complement_dict:
+                return [complement_dict[complement], i]
+            else:
+                if nums[i] in complement_dict:
+                    continue
+                complement_dict[nums[i]] = i
 
-        # using list comprehension to convert number to list of integers
-        res = [int(i) for i in str(num)]
-        print("The list from number is " + str(res))
 
-        # Convert a number to single string
-        s = ConvertNumToString()
-        single_string = s.convert_num_to_string(num)
-        print(str(num) + " - " + single_string)
+    def twoSum3(self, nums, target):
+        seen = {}
+        for i, v in enumerate(nums):
+            remaining = target - v
+            if remaining in seen:
+                return [seen[remaining], i]
+            seen[v] = i
+        return []
+
+    # how to create hash table in python
+    def get_hash(self, key):
+        h = 0
+        for char in key:
+            h += ord(char)
+        return h % 100
+
+
+    nums = [2,7,11,15]
+    target = 9
+
+    def test_get_hash(self):
+        P1Solution.twoSum(self, nums, target)
+
+
+    def test_two_sum(self):
+        P1Solution.get_hash(self, 'm')
+
 
 if __name__ == '__main__':
     unittest.main()

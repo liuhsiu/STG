@@ -24,7 +24,7 @@ class ChallengeB(unittest.TestCase):
         self.driver.close()
         print('in tear down method')
 
-    def test_challengeB(self):
+    def test_challengeB_BubbleSort(self):
         #code for our test steps
         # self.driver.get("https://www.google.com")
         # self.assertIn("Google", self.driver.title)
